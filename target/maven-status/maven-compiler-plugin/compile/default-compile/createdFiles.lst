@@ -1,0 +1,9 @@
+DataAccessLayer\DA_Localizacao.class
+BussinessLayer\BL_Localizacao.class
+DataAccessLayer\DA_Rede.class
+TransferLayer\UF.class
+TransferLayer\TO_Localizacao.class
+TransferLayer\Regiao.class
+BussinessLayer\BL_Rede.class
+Project\Project.class
+TransferLayer\TO_Rede.class
