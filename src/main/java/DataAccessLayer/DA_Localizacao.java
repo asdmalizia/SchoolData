@@ -45,8 +45,8 @@ public class DA_Localizacao{
     }  
     
     private void read() throws IOException{
-        FileInputStream fis=new FileInputStream(new File("C:\\Users\\aless\\OneDrive\\Documentos\\NetBeansProjects\\SchoolData\\src\\main\\java\\DataSource\\TAXAS_APS2.xls"));
-        HSSFWorkbook wb=new HSSFWorkbook(fis);  
+        InputStream fis= DA_Localizacao.class.getResourceAsStream("/TAXAS_APS2.xls");
+        HSSFWorkbook wb=new HSSFWorkbook(fis);
         HSSFSheet sheet=wb.getSheetAt(0);
         
         int count=0;        

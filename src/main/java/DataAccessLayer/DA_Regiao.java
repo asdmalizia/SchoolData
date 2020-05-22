@@ -9,6 +9,7 @@ import TransferLayer.TO_Regiao;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -86,8 +87,8 @@ public class DA_Regiao {
     }  
     
     private void read() throws IOException{
-        FileInputStream fis=new FileInputStream(new File("C:\\Users\\aless\\Downloads\\TAXAS_APS2.xls"));
-        HSSFWorkbook wb=new HSSFWorkbook(fis);  
+        InputStream fis= DA_Localizacao.class.getResourceAsStream("/TAXAS_APS2.xls");
+        HSSFWorkbook wb=new HSSFWorkbook(fis);
         HSSFSheet sheet=wb.getSheetAt(0);
                 
         for (int rowIndex = 11; rowIndex <= sheet.getLastRowNum(); rowIndex++) {

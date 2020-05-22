@@ -9,6 +9,8 @@ import TransferLayer.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -41,8 +43,8 @@ public class DA_Rede {
     } 
     
     private void read() throws IOException{
-        FileInputStream fis=new FileInputStream(new File("C:\\Users\\aless\\Downloads\\TAXAS_APS2.xls"));
-        HSSFWorkbook wb=new HSSFWorkbook(fis);  
+        InputStream fis= DA_Localizacao.class.getResourceAsStream("/TAXAS_APS2.xls");
+        HSSFWorkbook wb=new HSSFWorkbook(fis);
         HSSFSheet sheet=wb.getSheetAt(0);        
         
         int countEst=0, countMun=0, countFed=0, countPub=0, countPart=0;        
