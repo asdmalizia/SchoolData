@@ -24,8 +24,11 @@ public class DA_Regiao {
     public Map<String, Double> regioes;
     public Map<String, Double> counter;
     public Map<String, String> estados;
+    private DA_Populacao objPopulacao;
     
     public DA_Regiao(){
+//        objPopulacao = DA_Populacao.getInstance();
+        
         regioes = new HashMap<String, Double>();
         regioes.put("NE", 0.);
         regioes.put("N", 0.);
