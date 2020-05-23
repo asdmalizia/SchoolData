@@ -61,6 +61,9 @@ public class DA_Localizacao{
               Cell cellTaxa = row.getCell(15);
               if (cellTaxa != null) {
                   String regiao = cellUF.getStringCellValue();
+                  if(objPopulacao == null) System.out.println("objPopulacao era nulo");
+                  if(objPopulacao.estados == null) System.out.println("estados tava nulo");
+                  if(objPopulacao.estados.get(regiao) == null) System.out.println("nao tinha estado pra regiao" + regiao);
                 if("Urbana".equals(cellLocalizacao.getStringCellValue()) && "Total".equals(cellRede.getStringCellValue())){
                     pop = (objPopulacao.estados.get(regiao)).second;
                     urbana+=(cellTaxa.getNumericCellValue()*pop);
