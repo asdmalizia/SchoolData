@@ -17,7 +17,7 @@ public class DA_Rede_Publica extends DA_Rede {
     }
 
     @Override
-    public TO_Rede getData() {
+    public TO_Rede_Publica getData() {
         try{
             read();
         }

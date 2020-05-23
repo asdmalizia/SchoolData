@@ -1,6 +1,7 @@
 package DataAccessLayer;
 
 import TransferLayer.TO_Rede;
+import TransferLayer.TO_Rede_Federal;
 
 import java.io.IOException;
 
@@ -11,7 +12,7 @@ public class DA_Rede_Federal extends DA_Rede{
     }
 
     @Override
-    public TO_Rede getData() {
+    public TO_Rede_Federal getData() {
         try{
             read();
         }
@@ -19,6 +20,6 @@ public class DA_Rede_Federal extends DA_Rede{
             System.out.print(err.getMessage());
             return null;
         }
-        return new TO_Rede_Federal (taxa);
+        return new TO_Rede_Federal(taxa);
     }
 }

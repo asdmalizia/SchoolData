@@ -10,17 +10,9 @@ package TransferLayer;
  * @author aless
  */
 public class TO_Rede {
-    public double publico;
-    public double particular;
-    public double municipal;
-    public double estadual;
-    public double federal;
+    public double taxa;
     
-    public TO_Rede(double publico, double particular, double municipal, double estadual, double federal){
-        this.publico = publico;
-        this.particular = particular;
-        this.municipal = municipal;
-        this.estadual = estadual;
-        this.federal = federal;
+    public TO_Rede(double taxa){
+        this.taxa = taxa;
     }    
 }

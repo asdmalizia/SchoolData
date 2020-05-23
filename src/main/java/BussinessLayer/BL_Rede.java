@@ -5,8 +5,8 @@
  */
 package BussinessLayer;
 
-import DataAccessLayer.DA_Rede;
-import TransferLayer.TO_Rede;
+import DataAccessLayer.*;
+import TransferLayer.*;
 
 /**
  *
@@ -14,11 +14,16 @@ import TransferLayer.TO_Rede;
  */
 public class BL_Rede {
     public void analisar(){
-        TO_Rede obj = new DA_Rede().getData();
-        System.out.println("Percentual da taxa de abandono média por estado, em escolas públicas: " + obj.publico);
-        System.out.println("Percentual da taxa de abandono média por estado, em escolas particulares: " + obj.particular);
-        System.out.println("Percentual da taxa de abandono média por estado, em escolas municipais: " + obj.municipal);
-        System.out.println("Percentual da taxa de abandono média por estado, em escolas estaduais: " + obj.estadual);
-        System.out.println("Percentual da taxa de abandono média por estado, em escolas federais: " + obj.federal);
+        TO_Rede_Estadual obj_estadual =   new DA_Rede_Estadual().getData();
+        TO_Rede_Federal obj_federal = new  DA_Rede_Federal().getData();
+        TO_Rede_Municipal obj_municipal = new DA_Rede_Municipal().getData();
+        TO_Rede_Particular obj_particular = new DA_Rede_Particular().getData();
+        TO_Rede_Publica obj_publico =  new DA_Rede_Publica().getData();
+
+        System.out.println("Percentual da taxa de abandono média por estado, em escolas públicas: " + obj_publico.taxa);
+        System.out.println("Percentual da taxa de abandono média por estado, em escolas particulares: " + obj_particular.taxa);
+        System.out.println("Percentual da taxa de abandono média por estado, em escolas municipais: " + obj_municipal.taxa);
+        System.out.println("Percentual da taxa de abandono média por estado, em escolas estaduais: " + obj_estadual.taxa);
+        System.out.println("Percentual da taxa de abandono média por estado, em escolas federais: " + obj_federal.taxa);
     }
 }

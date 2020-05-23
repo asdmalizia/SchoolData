@@ -1,6 +1,7 @@
 package DataAccessLayer;
 
 import TransferLayer.TO_Rede;
+import TransferLayer.TO_Rede_Particular;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 
@@ -14,7 +15,7 @@ public class DA_Rede_Particular extends DA_Rede{
     }
 
     @Override
-    public TO_Rede getData() {
+    public TO_Rede_Particular getData() {
         try{
             read();
         }
@@ -22,7 +23,7 @@ public class DA_Rede_Particular extends DA_Rede{
             System.out.print(err.getMessage());
             return null;
         }
-        return new TO_Rede_Particular (taxa);
+        return new TO_Rede_Particular(taxa);
     }
 
 
