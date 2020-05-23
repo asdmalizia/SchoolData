@@ -45,23 +45,46 @@ public class DA_Populacao {
         HSSFWorkbook wb=new HSSFWorkbook(fis);
         HSSFSheet sheetUF=wb.getSheetAt(1);
 
-        for (int rowIndex = 5; rowIndex <= sheetUF.getLastRowNum(); rowIndex++) {
+        for (int rowIndex = 4; rowIndex <= sheetUF.getLastRowNum(); rowIndex++) {
             Row rowUF = sheetUF.getRow(rowIndex);
-            if (rowUF != null) {
-                Cell cellUF = rowUF.getCell(1);
-                Cell cellLocalizacao = rowUF.getCell(2);
-                Cell cellPopulacaoUF = rowUF.getCell(3);
-                double rural = 0;
-                double urbana = 0;
-                if("Rural".equals(cellLocalizacao.getStringCellValue())){
+            if (rowUF == null)
+                continue;
+
+            Cell cellUF = rowUF.getCell(1);
+            Cell cellLocalizacao = rowUF.getCell(2);
+            Cell cellPopulacaoUF = rowUF.getCell(3);
+            double rural = 0;
+            double urbana = 0;
+
+            if (cellLocalizacao != null) {
+                if ("Rural".equals(cellLocalizacao.getStringCellValue())) {
                     rural = cellPopulacaoUF.getNumericCellValue();
+                    Pair<Double, Double> populacao = new Pair<>(rural, urbana);
+                    estados.put(cellUF.getStringCellValue(), populacao);
                 }
-                if("Urbana".equals(cellLocalizacao.getStringCellValue())){
+                if ("Urbana".equals(cellLocalizacao.getStringCellValue())) {
                     urbana = cellPopulacaoUF.getNumericCellValue();
+                    for(String uf : estados.keySet()){
+                       if(uf == cellUF.getStringCellValue()){
+                           (estados.get(uf)).second = urbana;
+                       }
+                    }
                 }
-                Pair<Double, Double> populacao = new Pair<>(rural, urbana);
-                estados.put(cellUF.getStringCellValue(), populacao);
+
+
             }
+
+          // populacao.imprimir();
+//               System.out.println(cellUF.getStringCellValue());
+
+//               for(String uf : estados.keySet()){
+//                   if(uf == cellUF.getStringCellValue()){
+//                       (estados.get(uf)).second
+//                   }
+//               }
+
+
+
         }
     }
 

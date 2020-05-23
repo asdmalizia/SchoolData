@@ -10,6 +10,7 @@ public class Pair<F, S> {
         this.second = second;
     }
 
+
     public void imprimir(){
         System.out.println(this.first + " " + this.second);
     }
