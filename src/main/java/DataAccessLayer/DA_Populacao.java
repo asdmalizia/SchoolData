@@ -20,7 +20,7 @@ import org.apache.poi.ss.usermodel.Row;
  */
 public class DA_Populacao {
     public Map<String, Pair<Double, Double>> estados;
-    public Map<String, Double> regioes;
+   // public Map<String, Double> regioes;
 
     private static class DA_Populacao_Holder{
         private static final DA_Populacao INSTANCE = new DA_Populacao();
@@ -33,7 +33,7 @@ public class DA_Populacao {
     private DA_Populacao(){
         estados = new HashMap<String, Pair<Double, Double>>();
         try{
-            lerUFS(); lerRegioes();
+            lerUFS(); //lerRegioes();
         }
         catch(IOException err){
             //faz alguma coisa
@@ -54,7 +54,6 @@ public class DA_Populacao {
                 double rural = 0;
                 double urbana = 0;
                 if("Rural".equals(cellLocalizacao.getStringCellValue())){
-                    System.out.println("entrou aqui");
                     rural = cellPopulacaoUF.getNumericCellValue();
                 }
                 if("Urbana".equals(cellLocalizacao.getStringCellValue())){
@@ -66,19 +65,19 @@ public class DA_Populacao {
         }
     }
 
-    private void lerRegioes() throws IOException{
-        InputStream fis= DA_Localizacao.class.getResourceAsStream("/TAXAS_APS2.xls");
-        HSSFWorkbook wb=new HSSFWorkbook(fis);
-        HSSFSheet sheetRegiao=wb.getSheetAt(2);
-
-        for (int rowIndex = 5; rowIndex <= sheetRegiao.getLastRowNum(); rowIndex++) {
-            Row rowRegiao = sheetRegiao.getRow(rowIndex);
-            if (rowRegiao != null) {
-                Cell cellRegiao = rowRegiao.getCell(0);
-                Cell cellPopulacaoRegiao = rowRegiao.getCell(1);
-                regioes.put(cellRegiao.getStringCellValue(), cellPopulacaoRegiao.getNumericCellValue());
-            }
-        }
-    }
+//    private void lerRegioes() throws IOException{
+//        InputStream fis= DA_Localizacao.class.getResourceAsStream("/TAXAS_APS2.xls");
+//        HSSFWorkbook wb=new HSSFWorkbook(fis);
+//        HSSFSheet sheetRegiao=wb.getSheetAt(2);
+//
+//        for (int rowIndex = 5; rowIndex <= sheetRegiao.getLastRowNum(); rowIndex++) {
+//            Row rowRegiao = sheetRegiao.getRow(rowIndex);
+//            if (rowRegiao != null) {
+//                Cell cellRegiao = rowRegiao.getCell(0);
+//                Cell cellPopulacaoRegiao = rowRegiao.getCell(1);
+//                regioes.put(cellRegiao.getStringCellValue(), cellPopulacaoRegiao.getNumericCellValue());
+//            }
+//        }
+//    }
 
 }

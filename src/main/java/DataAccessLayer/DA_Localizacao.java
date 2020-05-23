@@ -30,8 +30,7 @@ public class DA_Localizacao{
     public DA_Localizacao(){
         rural=0;
         urbana=0;
-        //inicializar o objPopulacao
-        DA_Populacao objPopulacao;
+        objPopulacao = DA_Populacao.getInstance();
     }
     
     public TO_Localizacao getData(){
@@ -62,20 +61,19 @@ public class DA_Localizacao{
               Cell cellTaxa = row.getCell(15);
               if (cellTaxa != null) {
                   String regiao = cellUF.getStringCellValue();
-              objPopulacao.estados.get(regiao);
                 if("Urbana".equals(cellLocalizacao.getStringCellValue()) && "Total".equals(cellRede.getStringCellValue())){
-//                    pop = (objPopulacao.estados.get(regiao)).second;
-//                    urbana+=(cellTaxa.getNumericCellValue()*pop);
-//                    pop_urbana += pop;
-                    urbana+=cellTaxa.getNumericCellValue();
-                    pop_urbana += 1;
+                    pop = (objPopulacao.estados.get(regiao)).second;
+                    urbana+=(cellTaxa.getNumericCellValue()*pop);
+                    pop_urbana += pop;
+//                    urbana+=cellTaxa.getNumericCellValue();
+//                    pop_urbana += 1;
                 }
                 else if("Rural".equals(cellLocalizacao.getStringCellValue()) && "Total".equals(cellRede.getStringCellValue())){
-//                    pop = (objPopulacao.estados.get(regiao)).first;
-//                    rural+=(cellTaxa.getNumericCellValue()*pop);
-//                    pop_rural += pop;
-                    rural+=cellTaxa.getNumericCellValue();
-                    pop_rural += 1;
+                    pop = (objPopulacao.estados.get(regiao)).first;
+                    rural+=(cellTaxa.getNumericCellValue()*pop);
+                    pop_rural += pop;
+//                    rural+=cellTaxa.getNumericCellValue();
+//                    pop_rural += 1;
                 }
               }
             }
