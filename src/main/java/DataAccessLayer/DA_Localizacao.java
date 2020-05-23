@@ -31,6 +31,7 @@ public class DA_Localizacao{
         rural=0;
         urbana=0;
         //inicializar o objPopulacao
+        DA_Populacao objPopulacao;
     }
     
     public TO_Localizacao getData(){
@@ -48,30 +49,39 @@ public class DA_Localizacao{
         InputStream fis= DA_Localizacao.class.getResourceAsStream("/TAXAS_APS2.xls");
         HSSFWorkbook wb=new HSSFWorkbook(fis);
         HSSFSheet sheet=wb.getSheetAt(0);
-        
-        int count=0;        
+        double pop_urbana = 0;
+        double pop_rural = 0;
+        double pop;
+
         for (int rowIndex = 11; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
             Row row = sheet.getRow(rowIndex);
             if (row != null) {
-              Cell cellLocalizacao = row.getCell(2);
+                Cell cellUF = row.getCell(1);
+                Cell cellLocalizacao = row.getCell(2);
               Cell cellRede = row.getCell(3);
               Cell cellTaxa = row.getCell(15);
               if (cellTaxa != null) {
+                  String regiao = cellUF.getStringCellValue();
+              objPopulacao.estados.get(regiao);
                 if("Urbana".equals(cellLocalizacao.getStringCellValue()) && "Total".equals(cellRede.getStringCellValue())){
+//                    pop = (objPopulacao.estados.get(regiao)).second;
+//                    urbana+=(cellTaxa.getNumericCellValue()*pop);
+//                    pop_urbana += pop;
                     urbana+=cellTaxa.getNumericCellValue();
-                    //par = objPopulacao.estados.get("UF")
-                    //pop_urbana = par.second
-                    count++;
-                    //somar em pop_urbana total
+                    pop_urbana += 1;
                 }
                 else if("Rural".equals(cellLocalizacao.getStringCellValue()) && "Total".equals(cellRede.getStringCellValue())){
+//                    pop = (objPopulacao.estados.get(regiao)).first;
+//                    rural+=(cellTaxa.getNumericCellValue()*pop);
+//                    pop_rural += pop;
                     rural+=cellTaxa.getNumericCellValue();
+                    pop_rural += 1;
                 }
               }
             }
         }        
-        rural/=count; //dividir pela pop_rural total
-        urbana/=count;
+        rural/=pop_rural;
+        urbana/=pop_urbana;
     }    
       
 }

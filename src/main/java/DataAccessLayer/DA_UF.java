@@ -23,7 +23,7 @@ import org.apache.poi.ss.usermodel.Row;
  */
 public class DA_UF {
     public Map<String,Double> estados;
-    
+
     public DA_UF(){
         estados = new HashMap<String, Double>();
     }
