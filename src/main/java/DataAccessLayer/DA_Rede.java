@@ -9,18 +9,28 @@ import org.apache.poi.ss.usermodel.Row;
 import java.io.IOException;
 import java.io.InputStream;
 
-public abstract class DA_Rede {
+public class DA_Rede {
     protected double taxa;
     protected InputStream fis;
     protected HSSFWorkbook wb;
     protected HSSFSheet sheet;
-    protected String strategy;
+    protected String tipo;
 
-    public DA_Rede() {
+    public DA_Rede(String tipo) {
         taxa = 0;
+        this.tipo = tipo;
     }
 
-    public abstract TO_Rede getData();
+    public TO_Rede getData(){
+        try{
+            read();
+        }
+        catch(IOException err){
+            System.out.print(err.getMessage());
+            return null;
+        }
+        return new TO_Rede(taxa, tipo);
+    };
 
     protected void read() throws IOException{
         leitura();
@@ -34,7 +44,7 @@ public abstract class DA_Rede {
                 Cell cellRede = row.getCell(3);
                 Cell cellTaxa = row.getCell(15);
                 if (cellTaxa != null && Cell.CELL_TYPE_NUMERIC == cellTaxa.getCellType()) {
-                    if ("Total".equals(cellLocalizacao.getStringCellValue()) && strategy.equals(cellRede.getStringCellValue())) {
+                    if ("Total".equals(cellLocalizacao.getStringCellValue()) && tipo.equals(cellRede.getStringCellValue())) {
                         taxa += cellTaxa.getNumericCellValue();
                         count++;
                     }
