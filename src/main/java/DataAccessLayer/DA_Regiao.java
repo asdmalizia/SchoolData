@@ -42,7 +42,7 @@ public class DA_Regiao {
     }  
     
     private void read() throws IOException{
-        InputStream fis= DA_Localizacao.class.getResourceAsStream("/TAXAS_APS2_REGIOES.xls");
+        InputStream fis= DA_Regiao.class.getResourceAsStream("/TAXAS_APS2_REGIOES.xls");
         HSSFWorkbook wb=new HSSFWorkbook(fis);
         HSSFSheet sheet=wb.getSheetAt(0);
 

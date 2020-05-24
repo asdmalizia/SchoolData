@@ -40,7 +40,7 @@ public class DA_UF {
     }  
     
     private void read() throws IOException{
-        InputStream fis= DA_Localizacao.class.getResourceAsStream("/TAXAS_APS2.xls");
+        InputStream fis= DA_UF.class.getResourceAsStream("/TAXAS_APS2.xls");
         HSSFWorkbook wb=new HSSFWorkbook(fis);
         HSSFSheet sheet=wb.getSheetAt(0);        
                 

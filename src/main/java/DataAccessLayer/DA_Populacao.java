@@ -41,7 +41,7 @@ public class DA_Populacao {
     }
 
     private void lerUFS() throws IOException{
-        InputStream fis= DA_Localizacao.class.getResourceAsStream("/TAXAS_APS2.xls");
+        InputStream fis= DA_Populacao.class.getResourceAsStream("/TAXAS_APS2.xls");
         HSSFWorkbook wb=new HSSFWorkbook(fis);
         HSSFSheet sheetUF=wb.getSheetAt(1);
 
@@ -73,34 +73,7 @@ public class DA_Populacao {
 
 
             }
-
-          // populacao.imprimir();
-//               System.out.println(cellUF.getStringCellValue());
-
-//               for(String uf : estados.keySet()){
-//                   if(uf == cellUF.getStringCellValue()){
-//                       (estados.get(uf)).second
-//                   }
-//               }
-
-
-
         }
     }
-
-//    private void lerRegioes() throws IOException{
-//        InputStream fis= DA_Localizacao.class.getResourceAsStream("/TAXAS_APS2.xls");
-//        HSSFWorkbook wb=new HSSFWorkbook(fis);
-//        HSSFSheet sheetRegiao=wb.getSheetAt(2);
-//
-//        for (int rowIndex = 5; rowIndex <= sheetRegiao.getLastRowNum(); rowIndex++) {
-//            Row rowRegiao = sheetRegiao.getRow(rowIndex);
-//            if (rowRegiao != null) {
-//                Cell cellRegiao = rowRegiao.getCell(0);
-//                Cell cellPopulacaoRegiao = rowRegiao.getCell(1);
-//                regioes.put(cellRegiao.getStringCellValue(), cellPopulacaoRegiao.getNumericCellValue());
-//            }
-//        }
-//    }
 
 }

@@ -1,6 +1,5 @@
-package DataAccessLayer;
+package DataAcessLayerTest;
 
-import TransferLayer.*;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -9,31 +8,24 @@ import org.apache.poi.ss.usermodel.Row;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class DA_Rede {
-    private double taxa;
-    private InputStream fis;
-    private HSSFWorkbook wb;
-    private HSSFSheet sheet;
+public class DA_Redes_Mock {
+    protected InputStream fis;
+    protected HSSFWorkbook wb;
+    protected HSSFSheet sheet;
+    protected double taxa;
     private String tipo;
 
-    public DA_Rede(String tipo) {
+
+    public DA_Redes_Mock(String tipo) {
         taxa = 0;
         this.tipo = tipo;
     }
 
-    public TO_Rede getData(){
-        try{
-            read();
-        }
-        catch(IOException err){
-            System.out.print(err.getMessage());
-            return null;
-        }
-        return new TO_Rede(taxa, tipo);
-    }
+    protected void readMock () throws IOException {
+        fis = DA_Redes_Mock.class.getResourceAsStream("/TAXAS_APS2_TESTE.xls");
+        wb = new HSSFWorkbook(fis);
+        sheet = wb.getSheetAt(0);
 
-    protected void read() throws IOException{
-        leitura();
         int count = 0;
 
         for (int rowIndex = 11; rowIndex <= sheet.getLastRowNum(); rowIndex++){
@@ -54,12 +46,11 @@ public class DA_Rede {
         taxa /= count;
     }
 
-    public double getTaxa() {return taxa;}
-
-    protected void leitura() throws IOException {
-        fis = DA_Rede.class.getResourceAsStream("/TAXAS_APS2.xls");
+    protected void leituraMock() throws IOException {
+        fis = DA_Redes_Mock.class.getResourceAsStream("/TAXAS_APS2_TESTE.xls");
         wb = new HSSFWorkbook(fis);
         sheet = wb.getSheetAt(0);
     }
+
 
 }
