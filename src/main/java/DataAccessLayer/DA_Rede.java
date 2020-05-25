@@ -10,20 +10,18 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class DA_Rede {
-    private double taxa;
-    private InputStream fis;
-    private HSSFWorkbook wb;
-    private HSSFSheet sheet;
     private String tipo;
 
     public DA_Rede(String tipo) {
-        taxa = 0;
         this.tipo = tipo;
     }
 
     public TO_Rede getData(){
+        HSSFSheet sheet;
+        double taxa;
         try{
-            read();
+            sheet = getSheet();
+            taxa = calculateTaxa(sheet);
         }
         catch(IOException err){
             System.out.print(err.getMessage());
@@ -32,11 +30,11 @@ public class DA_Rede {
         return new TO_Rede(taxa, tipo);
     }
 
-    protected void read() throws IOException{
-        leitura();
+    public double calculateTaxa(HSSFSheet sheet) throws IOException{
+        double taxa = 0;
         int count = 0;
-
-        for (int rowIndex = 11; rowIndex <= sheet.getLastRowNum(); rowIndex++){
+        // Estava perdendo a primeira linha. row=11
+        for (int rowIndex = 10; rowIndex <= sheet.getLastRowNum(); rowIndex++){
             Row row = sheet.getRow(rowIndex);
             if (row != null) {
                 Cell cellLocalizacao = row.getCell(2);
@@ -52,14 +50,17 @@ public class DA_Rede {
 
         }
         taxa /= count;
+        return taxa;
     }
 
-    public double getTaxa() {return taxa;}
-
-    protected void leitura() throws IOException {
+    protected HSSFSheet getSheet() throws IOException {
+        InputStream fis;
+        HSSFWorkbook wb;
+        HSSFSheet sheet;
         fis = DA_Rede.class.getResourceAsStream("/TAXAS_APS2.xls");
         wb = new HSSFWorkbook(fis);
         sheet = wb.getSheetAt(0);
+        return sheet;
     }
 
 }

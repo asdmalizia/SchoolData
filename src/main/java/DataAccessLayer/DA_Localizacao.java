@@ -81,8 +81,8 @@ public class DA_Localizacao{
               }
             }
         }        
-        rural/=pop_rural;
-        urbana/=pop_urbana;
+        rural/=pop_rural; //return
+        urbana/=pop_urbana; // return
     }    
       
 }

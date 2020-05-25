@@ -23,7 +23,7 @@ public class BL_Rede {
         redes.add(new DA_Rede(Tipos_Redes.federal).getData());
         redes.add(new DA_Rede(Tipos_Redes.municipal).getData());
         redes.add(new DA_Rede(Tipos_Redes.particular).getData());
-        redes.add(new DA_Rede(Tipos_Redes.publica).getData());
+        redes.add(new DA_Rede(Tipos_Redes.publico).getData());
 
         imprimirRedes(redes);
 
